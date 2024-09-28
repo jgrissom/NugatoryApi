@@ -24,4 +24,15 @@ public class ApiController(DataContext db) : ControllerBase
     await _dataContext.SaveChangesAsync();
     return word;
   }
+  // http delete member from collection
+  [HttpDelete("{id}")]
+  public async Task<ActionResult> Delete(int id){
+    Word? word = await _dataContext.Words.FindAsync(id);
+    if (word == null){
+        return NotFound();
+    }
+    _dataContext.Remove(word);
+    await _dataContext.SaveChangesAsync();
+    return NoContent();
+  }
 }
