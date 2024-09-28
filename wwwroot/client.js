@@ -18,7 +18,13 @@ function getData(url) {
 }
 
 function showData(data) {
+  const container = document.getElementById("container");
+  container.innerText = "";
   for (let i = 0; i < data.length; i++) {
     console.log(data[i]);
+    let el = document.createElement("div");
+    el.innerText = data[i].text;
+    el.style.color = `rgb(${data[i].r}, ${data[i].g}, ${data[i].b})`;
+    container.appendChild(el);
   }
 }
