@@ -11,4 +11,10 @@ public class ApiController(DataContext db) : ControllerBase
   {
       return _dataContext.Words;
   }
+  // http get specific member of collection
+  [HttpGet("{id}")]
+  public Word? Get(int id)
+  {
+      return _dataContext.Words.Find(id);
+  }
 }
