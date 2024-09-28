@@ -17,4 +17,11 @@ public class ApiController(DataContext db) : ControllerBase
   {
       return _dataContext.Words.Find(id);
   }
+  // http post member to collection
+  [HttpPost]
+  public async Task<ActionResult<Word>> Post([FromBody] Word word) {
+    _dataContext.Add(word);
+    await _dataContext.SaveChangesAsync();
+    return word;
+  }
 }
